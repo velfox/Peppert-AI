@@ -59,9 +59,9 @@ zmqChatGpt.py               # Main ChatGPT interaction script
 
 ## Usage
 
-1. **Start Web Server:** `npm start` (Access at http://localhost:3000)
-2. **Run ChatGPT Script:** `python3 zmqChatGpt.py`
-3. **Run Pepper Scripts (Optional):**
+1. **Start Web Server:** `npm start` (Access at http://localhost:3000) (enable insecure origins treated as secure for testing on tablet without SSL certificate)
+3. **Run ChatGPT Script:** `python3 zmqChatGpt.py`
+4. **Run Pepper Scripts (Optional):**
     * `python2 pepper_tts.py`
 
 ## Testing Without Pepper
