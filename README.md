@@ -43,7 +43,7 @@ zmqChatGpt.py               # Main ChatGPT interaction script
 ## Prerequisites
 
 * **Node.js:** Download and install from [https://nodejs.org/](https://nodejs.org/)
-* **Python 2 & 3:** Required for Pepper scripts (Python 2) and testing (Python 3)
+* **Python 2 & 3:** Required for Pepper scripts (Python 2) and Deepgram, openAI (Python 3)
 * **Pepper SDK:**  Install the SDK for running Pepper scripts
 * **Environment Variables:**
     * `DEEPGRAM_API_KEY`
