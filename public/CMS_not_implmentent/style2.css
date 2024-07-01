@@ -1,0 +1,32 @@
+.hidden {
+  display: none;
+}
+
+#assistants-list {
+  margin-top: 20px;
+}
+
+.assistant {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#add-assistant-form {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#add-assistant-form label {
+  display: block;
+  margin-top: 10px;
+}
+
+#add-assistant-form input,
+#add-assistant-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}

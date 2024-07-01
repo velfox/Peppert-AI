@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Animations</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .top-buttons {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .top-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .back-button {
+            background-color: #007BFF;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .end-button {
+            background-color: #FF0000;
+        }
+
+        .end-button:hover {
+            background-color: #cc0000;
+        }
+
+        .animation-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .animation-container h1 {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin: 0 auto 20px;
+            transition: all 0.5s ease;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .logo::before, .logo::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: rgba(255, 0, 0, 0.5);
+            z-index: -1;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .logo.listening::before, .logo.listening::after {
+            animation: pulse-red 1.5s infinite;
+        }
+
+        .logo.listening::after {
+            animation-delay: 0.75s;
+        }
+
+        .logo.listening img {
+            filter: drop-shadow(0 0 10px red);
+        }
+
+        @keyframes pulse-red {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0.2;
+            }
+        }
+
+        .logo.responding img {
+            animation: pulse-blue 1.5s infinite;
+        }
+
+        @keyframes pulse-blue {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+        }
+
+        .logo.processing img {
+            transform: scale(1.5);
+            z-index: 1;
+            animation: rotate-with-loader 1s linear infinite;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2.5);
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(0, 174, 239, 0.5);
+            border-top: 6px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite, glow 2s ease-in-out infinite, loaderwidth 2s ease-in-out infinite;
+            display: none;
+        }
+
+        .logo.processing .loading-spinner {
+            display: block;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg) scale(2.5);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg) scale(2.5);
+            }
+        }
+
+        @keyframes rotate-with-loader {
+            0% {
+                transform: scale(1.5) rotate(0deg);
+            }
+            100% {
+                transform: scale(1.5) rotate(360deg);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(0, 174, 239, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(0, 174, 239, 0.5);
+            }
+        }
+
+        @keyframes loaderwidth {
+            0%, 100% {
+                width: 60px;
+                height: 10px;
+            }
+            50% {
+                width: 200px;
+                height: 60px;
+            }
+        }
+
+        .text-container {
+            width: 90%;
+            background-color: white;
+            border-radius: 10px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+            padding: 30px;
+            box-sizing: border-box;
+            transition: all 0.5s ease;
+            display: none;
+            opacity: 0;
+            margin: 20px;
+        }
+
+        .text-container.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .text-container p {
+            margin: 0;
+            padding: 0;
+            font-size: 1.5rem;
+            text-align: center;
+            transition: font-size 0.5s ease;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-buttons">
+        <button class="back-button" onclick="goBack()">Back</button>
+        <button class="end-button" onclick="endConversation()">End Conversation</button>
+    </div>
+    <div class="animation-container">
+        <h1>AI Assistant Animations</h1>
+        <div class="logo" id="logo">
+            <img src="A7F466A4.png" alt="Logo">
+            <div class="loading-spinner"></div>
+        </div>
+        <div class="button-container">
+            <button onclick="startListening()">Start Listening</button>
+            <button onclick="startResponding()">Start Responding</button>
+            <button onclick="startProcessing()">Start Processing</button>
+            <button onclick="resetAnimation()">Reset</button>
+        </div>
+    </div>
+    <div class="text-container" id="text-container">
+        <p id="text-output"></p>
+    </div>
+
+    <script>
+        function startListening() {
+            updateTextContainer("Listening... Please speak Listening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speakListening... Please speak.");
+            const logo = document.getElementById('logo');
+            logo.classList.remove('responding', 'processing');
+            logo.classList.add('listening');
+        }
+
+        function startResponding() {
+            updateTextContainer("Responding... Please wait.");
+            const logo = document.getElementById('logo');
+            logo.classList.remove('listening', 'processing');
+            logo.classList.add('responding');
+        }
+
+        function startProcessing() {
+            updateTextContainer("Processing... Please wait.");
+            const logo = document.getElementById('logo');
+            logo.classList.remove('listening', 'responding');
+            logo.classList.add('processing');
+        }
+
+        function resetAnimation() {
+            const logo = document.getElementById('logo');
+            logo.classList.remove('listening', 'responding', 'processing');
+            clearTextContainer();
+        }
+
+        function updateTextContainer(text) {
+            const textContainer = document.getElementById('text-container');
+            const textOutput = document.getElementById('text-output');
+            textContainer.style.opacity = 0;
+            setTimeout(() => {
+                textOutput.innerText = text;
+                textContainer.classList.add('show');
+                adjustFontSize();
+                textContainer.style.opacity = 1;
+            }, 500); // match this with the transition duration
+        }
+
+        function clearTextContainer() {
+            const textContainer = document.getElementById('text-container');
+            textContainer.style.opacity = 0;
+            setTimeout(() => {
+                const textOutput = document.getElementById('text-output');
+                textOutput.innerText = "";
+                textContainer.classList.remove('show');
+            }, 500); // match this with the transition duration
+        }
+
+        function adjustFontSize() {
+            const textOutput = document.getElementById('text-output');
+            const textContainer = document.getElementById('text-container');
+            const containerHeight = textContainer.clientHeight;
+            const containerWidth = textContainer.clientWidth;
+            let fontSize = parseInt(window.getComputedStyle(textOutput).fontSize);
+            textOutput.style.fontSize = `${fontSize}px`;
+
+            while (textOutput.scrollHeight > containerHeight || textOutput.scrollWidth > containerWidth) {
+                fontSize--;
+                textOutput.style.fontSize = `${fontSize}px`;
+            }
+        }
+
+        function goBack() {
+            alert("Going back...");
+            // Add logic to handle going back
+        }
+
+        function endConversation() {
+            alert("Ending conversation...");
+            // Add logic to handle ending conversation
+        }
+    </script>
+</body>
+</html>

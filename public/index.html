@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Animations</title>
+    <script src="https://cdn.jsdelivr.net/npm/@deepgram/sdk@v3.0.0"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="setup-screen" class="screen active">
+        <h1>Welcome to the Pepper Ai tablet UI - press the button to start</h1>
+        <button class="primary-button" onclick="startfull()">Start!</button>
+    </div>
+
+    <div id="welcome-screen" class="screen hidden">
+        <h1>Hi, I'm Pepper your AI Assistant</h1>
+        <img src="img/logo.png" alt="Pepper Logo">
+        <h2>Come talk to me!</h2>
+        <br>
+        <button class="secondary-button" onclick="detectUser()">Start!</button>
+    </div>
+
+    <div id="privacy-screen" class="screen hidden">
+      <h1> Privacy Notice </h1>
+      <p> During interactions with Pepper, your voice input is processed by OpenAI and Deepgram to generate responses. </p> <p> These services handle your data to provide accurate answers. </br> Please be aware that Pepper uses a machine learning model (MLM) for speech recognition and response generation, </br> which may sometimes result in mistakes or incorrect answers.</br> If needed, try rephrasing your questions.</p>
+        <button class="primary-button" onclick="acceptPrivacy()">Accept</button>
+        <button class="end-button" onclick="declinePrivacy()">Decline</button>
+    </div>
+
+    <div id="goodbye-screen" class="screen hidden">
+        <h1>Goodbye!</h1>
+        <p>Thank you for your time.</p>
+    </div>
+
+    <div id="assistant-selection-screen" class="screen hidden">
+        <div class="top-buttons">
+            <button class="end-button" onclick="endConversation()">End Conversation</button>
+        </div>
+        <div class="container">
+          <h1>Select Your Assistant</h1>
+      
+          <div class="assistant-row">
+              <div class="assistant-button" onclick="selectAssistant('assistant_1')">
+                  <div class="assistant-content">
+                      <button class="secondary-button">Pepper the Robot Expert</button>
+                      <p>Your guide to the world of robotics and AI.</p>
+                  </div>
+              </div>
+      
+              <div class="assistant-button" onclick="selectAssistant('assistant_2')">
+                  <div class="assistant-content">
+                      <button class="secondary-button">Pepper the Quizmaster</button>
+                      <p>Test your knowledge of Rotterdam with this fun quiz.</p>
+                  </div>
+              </div>
+          </div>
+      
+          <div class="assistant-row">
+              <div class="assistant-button" onclick="selectAssistant('assistant_3')">
+                  <div class="assistant-content">
+                      <button class="secondary-button">Pepper the Technologist</button>
+                      <p>Talk tech, learn new facts, and test your knowledge.</p>
+                  </div>
+              </div>
+      
+              <div class="assistant-button" onclick="selectAssistant('assistant_4')">
+                  <div class="assistant-content">
+                      <button class="secondary-button">Pepper the Innovation Expert</button>
+                      <p>Discover the future of technology and share your vision.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+    </div>
+
+    <div id="interaction-screen" class="screen hidden">
+        <div class="top-buttons">
+            <button class="back-button" onclick="goBack()">Back</button>
+            <button class="end-button" onclick="endConversation()">End Conversation</button>
+        </div>
+        <div class="animation-container">
+            <!-- <h1>Talk with Pepper!</h1> -->
+            <div class="logo" id="logo">
+                <img src="A7F466A4.png" alt="Logo">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+        <div class="text-container" id="text-container">
+            <p id="text-output"></p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>

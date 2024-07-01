@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Assistants</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <h1>Manage Assistants</h1>
+    <div id="assistants-list"></div>
+    <h2>Add New Assistant</h2>
+    <form id="add-assistant-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+        <label for="instructions">Instructions:</label>
+        <textarea id="instructions" name="instructions" required></textarea>
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" value="gpt-4o" required readonly>
+        <button type="submit">Add Assistant</button>
+    </form>
+    <script src="manage.js"></script>
+</body>
+</html>
