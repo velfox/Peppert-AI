@@ -13,51 +13,30 @@ Created By Tim - velfox.
 * **Web Interface:**  User-friendly interface for testing and interaction.
 * **ZeroMQ Communication:**  Robust and efficient messaging between components.
 
-## Folder Structure
+## Project Structure
 
-
-Absolutely! Here's a formatted GitHub README version of your description, incorporating best practices for readability and clarity:
-
-Markdown
-# AI Assistant System for Pepper
-
-## Overview
-
-This project is an AI-powered assistant system designed to run on Pepper the robot, as well as a standard computer for testing. The system uses Python scripts for various functionalities, a web interface for interaction, and ZeroMQ for communication between components.
-
-## Features
-
-* **AI-Powered Interactions:**  Leverages AI models (e.g., ChatGPT) for natural language understanding and responses.
-* **Pepper Integration:**  Specific scripts for Pepper's hardware (text-to-speech, human tracking).
-* **Web Interface:**  User-friendly interface for testing and interaction.
-* **ZeroMQ Communication:**  Robust and efficient messaging between components.
-
-## Folder Structure
-
-Wees voorzichtig met code.
-content_copy
 assistants/
-├── assistants.json         # Assistant configurations
-node_modules/               # Node.js modules
-Pepper_scripts/
-├── pepper_humen_tracker.py  # Human tracking script (Pepper)
-├── pepper_tts.py           # Text-to-speech script (Pepper)
+├── assistants.json          # Configuration for AI assistants
+node_modules/               # Node.js dependencies
+Pepper_scripts/             # Scripts specific to the Pepper robot
+    pepper_humen_tracker.py  # Human tracking script
+    pepper_tts.py           # Text-to-speech script
 public/
-├── CMS_not_implemented/    # (Future) Content management system
-├── img/                    # Images
-├── client.js               # Web client script
-├── index.html              # Main web page
-├── style.css               # Web page styling
-tests/
-├── openAI_audio_playback_test.py  # OpenAI audio test script
-├── testZmqMessages.py             # ZeroMQ test script
-├── ttsListener.py                 # TTS listener script
-.env                        # Environment variables
-.gitignore
-package-lock.json
-package.json
-server.js                   # Node.js server script
-zmqChatGpt.py               # Main ChatGPT interaction script
+├── CMS_not_implemented/    # Placeholder for future content management
+├── img/                    # Images used in the project
+├── client.js               # Client-side JavaScript for the web app
+├── index.html              # Main HTML file for the web app
+└── style.css               # Styles for the web app
+tests/                      # Scripts for testing the system
+    openAI_audio_playback_test.py 
+    testZmqMessages.py             
+    ttsListener.py                 
+.env                        # Environment variables (not in version control)
+.gitignore                  # Files and folders to ignore in Git
+package-lock.json           # Lockfile for npm dependencies
+package.json                # Project metadata and dependencies for npm
+server.js                   # Main Node.js server
+zmqChatGpt.py               # Script for handling ChatGPT interaction
 
 ## Prerequisites
 
