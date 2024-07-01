@@ -14,30 +14,32 @@ Created By Tim - velfox.
 * **ZeroMQ Communication:**  Robust and efficient messaging between components.
 
 ## Project Structure
+```
+assistants/
+├── assistants.json          # Assistant configurations
+node_modules/               # Node.js modules
+Pepper_scripts/
 
-assistants/             # Contains configuration files for AI assistants
-  assistants.json          # Configuration for AI assistants
-node_modules/           # Node.js dependencies (managed by npm)
-Pepper_scripts/         # Scripts specific to the Pepper robot
-  pepper_humen_tracker.py  # Human tracking script for Pepper
-  pepper_tts.py           # Text-to-speech script for Pepper
-public/                 # Publicly accessible files for the web interface
-  CMS_not_implemented/    # Placeholder for future content management system
-  img/                    # Images used in the project
-  client.js               # Client-side JavaScript for the web interface
-  index.html              # Main HTML file for the web interface
-  style.css               # Styles for the web interface
-tests/                    # Scripts for testing various components
-  openAI_audio_playback_test.py  # Test script for OpenAI audio playback
-  testZmqMessages.py             # Test script for ZeroMQ messages
-  ttsListener.py                 # Script for listening to text-to-speech messages
-.env                      # Environment variables (not in version control)
-.gitignore                # Files and folders to ignore in Git
-package-lock.json         # Lockfile for npm dependencies
-package.json              # Project metadata and dependencies for npm
-server.js                 # Main Node.js server
-zmqChatGpt.py             # Script for handling ChatGPT interactions
+├── pepper_humen_tracker.py  # Human tracking script (Pepper)
+├── pepper_tts.py           # Text-to-speech script (Pepper)
+public/
+├── CMS_not_implemented/    # (Future) Content management system
+├── img/                    # Images
+├── client.js               # Web client script
+├── index.html              # Main web page
+├── style.css               # Web page styling
+tests/
+├── openAI_audio_playback_test.py # OpenAI audio test script
+├── testZmqMessages.py             # ZeroMQ test script
+├── ttsListener.py                 # TTS listener script
+.env                        # Environment variables
+.gitignore
 
+package-lock.json
+package.json
+server.js                   # Node.js server script
+zmqChatGpt.py               # Main ChatGPT interaction script
+```
 ## Prerequisites
 
 * **Node.js:** Download and install from [https://nodejs.org/](https://nodejs.org/)
